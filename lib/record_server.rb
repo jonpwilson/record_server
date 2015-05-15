@@ -10,7 +10,16 @@ class RecordingServer
     seconds_sample = 10
 
     system "rm -f #{filename}"
-    system "rec -c 2 #{filename} trim 0 #{seconds_sample}"
+
+    begin
+      # Test to see if the box this is running on has aplay installed
+      output = `aplay -l | grep -A 2 Analog`
+      matches = output.gsub("\n", '').match(/card (\d+):.*Subdevice #(\d+):/)
+      soundcard = "AUDIODRIVER=alsa AUDIODEV=hw:#{matches[1]},#{matches[2]}"
+    rescue
+      # Do nothing, just catch the error
+    end
+    system "#{soundcard} rec -c 2 #{filename} trim 0 #{seconds_sample}"
     output = `sox #{filename} -n stat 2>&1 | grep "Maximum amplitude" | awk '{printf $3}'`
 
     max_amp = output.to_f
