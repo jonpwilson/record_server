@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = 'Audio recording server'
   s.authors     = ['Jon Wilson']
   s.email       = ''
-  s.files       = `git ls-files`.split "\n"
+  s.files       = ["LICENSE", "lib/record_server.rb", "record_server.gemspec"]
   s.homepage    = 'https://github.com/'
   s.license     = 'MIT'
 end
