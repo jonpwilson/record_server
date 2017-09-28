@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'record_server'
   s.version     = '0.0.1'
-  s.date        = '2015-05-15'
+  s.date        = '2017-09-28'
   s.summary     = 'Audio recording server'
   s.description = 'Audio recording server'
   s.authors     = ['Jon Wilson']
